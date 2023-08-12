@@ -167,10 +167,10 @@ function initUI(){
 		color:#FFFFFF;
 	}
 	#startStopBtn:before{
-		content:"Start";
+		content:"开始测速";
 	}
 	#startStopBtn.running:before{
-		content:"Abort";
+		content:"停止测速";
 	}
 	#test{
 		margin-top:2em;
@@ -281,30 +281,30 @@ function initUI(){
 <div id="testWrapper">
 	<div id="startStopBtn" onclick="startStop()"></div><br/>
 	<?php if(getenv("TELEMETRY")=="true"){ ?>
-        <a class="privacy" href="#" onclick="I('privacyPolicy').style.display=''">Privacy</a>
+        <a class="privacy" href="/results/stats.php" >数据统计</a>
 	<?php } ?>
 	<div id="test">
 		<div class="testGroup">
 			<div class="testArea2">
-				<div class="testName">Ping</div>
+				<div class="testName">连接延迟</div>
 				<div id="pingText" class="meterText" style="color:#AA6060"></div>
 				<div class="unit">ms</div>
 			</div>
 			<div class="testArea2">
-				<div class="testName">Jitter</div>
+				<div class="testName">连接抖动</div>
 				<div id="jitText" class="meterText" style="color:#AA6060"></div>
 				<div class="unit">ms</div>
 			</div>
 		</div>
 		<div class="testGroup">
 			<div class="testArea">
-				<div class="testName">Download</div>
+				<div class="testName">下载速度</div>
 				<canvas id="dlMeter" class="meter"></canvas>
 				<div id="dlText" class="meterText"></div>
 				<div class="unit">Mbps</div>
 			</div>
 			<div class="testArea">
-				<div class="testName">Upload</div>
+				<div class="testName">上传速度</div>
 				<canvas id="ulMeter" class="meter"></canvas>
 				<div id="ulText" class="meterText"></div>
 				<div class="unit">Mbps</div>
@@ -314,51 +314,12 @@ function initUI(){
 			<span id="ip"></span>
 		</div>
 		<div id="shareArea" style="display:none">
-			<h3>Share results</h3>
+			<h3>分享结果</h3>
 			<p>Test ID: <span id="testId"></span></p>
 			<input type="text" value="" id="resultsURL" readonly="readonly" onclick="this.select();this.focus();this.select();document.execCommand('copy');alert('Link copied')"/>
 			<img src="" id="resultsImg" />
 		</div>
 	</div>
-	<a href="https://github.com/librespeed/speedtest">Source code</a>
-</div>
-<div id="privacyPolicy" style="display:none">
-    <h2>Privacy Policy</h2>
-    <p>This HTML5 Speedtest server is configured with telemetry enabled.</p>
-    <h4>What data we collect</h4>
-    <p>
-        At the end of the test, the following data is collected and stored:
-        <ul>
-            <li>Test ID</li>
-            <li>Time of testing</li>
-            <li>Test results (download and upload speed, ping and jitter)</li>
-            <li>IP address</li>
-            <li>ISP information</li>
-            <li>Approximate location (inferred from IP address, not GPS)</li>
-            <li>User agent and browser locale</li>
-            <li>Test log (contains no personal information)</li>
-        </ul>
-    </p>
-    <h4>How we use the data</h4>
-    <p>
-        Data collected through this service is used to:
-        <ul>
-            <li>Allow sharing of test results (sharable image for forums, etc.)</li>
-            <li>To improve the service offered to you (for instance, to detect problems on our side)</li>
-        </ul>
-        No personal information is disclosed to third parties.
-    </p>
-    <h4>Your consent</h4>
-    <p>
-        By starting the test, you consent to the terms of this privacy policy.
-    </p>
-    <h4>Data removal</h4>
-    <p>
-        If you want to have your information deleted, you need to provide either the ID of the test or your IP address. This is the only way to identify your data, without this information we won't be able to comply with your request.<br/><br/>
-        Contact this email address for all deletion requests: <a href="mailto:<?=getenv("EMAIL") ?>"><?=getenv("EMAIL") ?></a>.
-    </p>
-    <br/><br/>
-    <a class="privacy" href="#" onclick="I('privacyPolicy').style.display='none'">Close</a><br/>
 </div>
 <script type="text/javascript">setTimeout(function(){initUI()},100);</script>
 </body>
